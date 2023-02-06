@@ -14,18 +14,17 @@ var mongodb = require('mongodb');
 // async function main() {
 //   await mongoose.connect(mongoDB);
 // }
-mongoose.connect('mongodb://localhost/emreyurderiassignment', { useNewUrlParser: true });
+
+//mongoose.connect('mongodb://localhost/emreyurderiassignment', { useNewUrlParser: true });
 
 //MongoDB database Schema template
-var messageSchema = new mongoose.Schema({
-  "firstName": String,
-  "email": String,
-  "message":String
- });
- //var User = mongoose.model("User", nameSchema);
-//module.exports.nameSchema = mongoose.model('first_assignment', nameSchema);
+// var messageSchema = new mongoose.Schema({
+//   "firstName": String,
+//   "email": String,
+//   "message":String
+//  });
 
-const UserMessage = mongoose.model('UserMessage', messageSchema);
+// const UserMessage = mongoose.model('UserMessage', messageSchema);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -57,21 +56,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     res.send("Message added");
 // })});
 
-app.use("/addmessage", (req, res) => {
-  const userMessage = new UserMessage({
-    "firstName": req.body.firstName, 
-    "email": req.body.email,
-    "message": req.body.message
-  });
-  userMessage.save((error) => {
-    if (error) {
-      res.send(error);
-    } else {
-      console.log("Inserted a document into the first_assignment collection");
-      res.send("Message added");
-    }
-  });
-});
+//comment silinecek
+// app.use("/addmessage", (req, res) => {
+//   const userMessage = new UserMessage({
+//     "firstName": req.body.firstName, 
+//     "email": req.body.email,
+//     "message": req.body.message
+//   });
+//   userMessage.save((error) => {
+//     if (error) {
+//       res.send(error);
+//     } else {
+//       console.log("Inserted a document into the first_assignment collection");
+//       res.send("Message added");
+//     }
+//   });
+// });
 
 // var db = new sqlite3.Database("mydb.db")
 
@@ -79,16 +79,16 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //add contact information to mongoose. If successful send a message, if not successful send an error
-app.post("/addname", (req, res) => {
-  var myData = new User(req.body);
-  myData.save()
-  .then(item => {
-  res.send("item saved to database");
-  })
-  .catch(err => {
-  res.status(400).send("unable to save to database");
-  });
- });
+// app.post("/addname", (req, res) => {
+//   var myData = new User(req.body);
+//   myData.save()
+//   .then(item => {
+//   res.send("item saved to database");
+//   })
+//   .catch(err => {
+//   res.status(400).send("unable to save to database");
+//   });
+//  });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
