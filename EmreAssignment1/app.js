@@ -15,16 +15,16 @@ var mongodb = require('mongodb');
 //   await mongoose.connect(mongoDB);
 // }
 
-//mongoose.connect('mongodb://localhost/emreyurderiassignment', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/emreyurderiassignment', { useNewUrlParser: true });
 
 //MongoDB database Schema template
-// var messageSchema = new mongoose.Schema({
-//   "firstName": String,
-//   "email": String,
-//   "message":String
-//  });
+var messageSchema = new mongoose.Schema({
+  "firstName": String,
+  "email": String,
+  "message":String
+ });
 
-// const UserMessage = mongoose.model('UserMessage', messageSchema);
+ const UserMessage = mongoose.model('UserMessage', messageSchema);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -56,22 +56,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     res.send("Message added");
 // })});
 
-//comment silinecek
-// app.use("/addmessage", (req, res) => {
-//   const userMessage = new UserMessage({
-//     "firstName": req.body.firstName, 
-//     "email": req.body.email,
-//     "message": req.body.message
-//   });
-//   userMessage.save((error) => {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       console.log("Inserted a document into the first_assignment collection");
-//       res.send("Message added");
-//     }
-//   });
-// });
+
+app.use("/addmessage", (req, res) => {
+  const userMessage = new UserMessage({
+    "firstName": req.body.firstName, 
+    "email": req.body.email,
+    "message": req.body.message
+  });
+  userMessage.save((error) => {
+    if (error) {
+      res.send(error);
+    } else {
+      console.log("Inserted a document into the first_assignment collection");
+      res.send("Message added");
+    }
+  });
+});
 
 // var db = new sqlite3.Database("mydb.db")
 
